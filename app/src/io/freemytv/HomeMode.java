@@ -63,6 +63,8 @@ final class HomeMode {
         "com.tcl.messagebox", "com.tcl.usercenter",                                   // TCL messages and account
         "com.tcl.exhibit", "com.tcl.esticker", "com.tcl.hotelmenu",                   // store demo, hotel menu
         "com.tcl.repairguide", "com.tcl.ocean.instructions", "com.tcl.logkit",        // repair guide, manual, logs
+        "com.tcl.browser", "com.tcl.videocall", "com.tcl.smartalexa",                 // MyTvOS: browser, video call, Alexa
+        "com.tcl.notereminder", "com.tcl.showmode", "com.tcl.bi",                     // MyTvOS: reminders, store mode, usage reports
         // Multilaser (Expressluck / CVTE board)
         "tv.anoki.acr.anokiacroptin",                                                 // Anoki ACR: watches what's on screen
         "fusion.android.tv.demo", "com.expressluck.tvhelpmanual",                     // store demo (also Xiaomi projectors), manual
