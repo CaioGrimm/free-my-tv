@@ -165,6 +165,14 @@ final class HomeApps {
         if (custom != null) return custom;
         List<String> out = new ArrayList<>();
         PackageManager pm = c.getPackageManager();
+        if (!Config.SHELF.trim().isEmpty()) {
+            // The shelf from config.properties, in its order (the apps this TV has).
+            for (String pkg : Config.SHELF.split(",")) {
+                pkg = pkg.trim();
+                if (!pkg.isEmpty() && out.size() < MAX_SHELF && !out.contains(pkg) && launchIntent(pm, pkg) != null) out.add(pkg);
+            }
+            if (!out.isEmpty()) return out;
+        }
         for (String[] d : SHELF) if (out.size() < MAX_SHELF && launchIntent(pm, d[2]) != null) out.add(d[2]);
         return out;
     }
