@@ -199,6 +199,18 @@ final class HomeMode {
         ModeJob.schedule(c, ModeJob.VERIFY, null, 45_000);
     }
 
+    /**
+     * The same check, started by the home screen once per boot: some TCL firmware never delivers BOOT_COMPLETED to
+     * third-party apps ("prevent third party app from boot complete broadcast"), and its own apps turn back on at boot.
+     */
+    static void bootCheckOnce(Context c) {
+        int boot = android.provider.Settings.Global.getInt(c.getContentResolver(), android.provider.Settings.Global.BOOT_COUNT, -1);
+        android.content.SharedPreferences sp = c.getSharedPreferences("boot", Context.MODE_PRIVATE);
+        if (boot < 0 || sp.getInt("checked", -1) == boot) return;
+        sp.edit().putInt("checked", boot).apply();
+        bootCheck(c);
+    }
+
     /** After an update of this app: complete Free My TV mode if anything is missing. */
     static void verify(Context c) {
         ModeJob.schedule(c, ModeJob.VERIFY, null, 0);
